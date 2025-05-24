@@ -1,0 +1,29 @@
+<%- include('partials/header') %>
+  <h2>Mark Attendance</h2>
+  <form action="/mark-attendance" method="POST">
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Roll Number</th>
+          <th>Attendance</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% students.forEach(student => { %>
+          <tr>
+            <td><%= student.name %></td>
+            <td><%= student.rollNumber %></td>
+            <td>
+              <select name="attendance[<%= student._id %>]">
+                <option value="present">Present</option>
+                <option value="absent">Absent</option>
+              </select>
+            </td>
+          </tr>
+        <% }); %>
+      </tbody>
+    </table>
+    <button type="submit">Submit Attendance</button>
+  </form>
+<%- include('partials/footer') %>
